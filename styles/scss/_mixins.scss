@@ -93,8 +93,14 @@
     margin: 0 auto;
 }
 
-@mixin break-point($value) {
+@mixin large-device($value) {
     @media (min-width: $value) {
+        @content;
+    }
+}
+
+@mixin small-device($value) {
+    @media (max-width: $value) {
         @content;
     }
 }

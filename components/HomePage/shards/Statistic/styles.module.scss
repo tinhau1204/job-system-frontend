@@ -1,0 +1,9 @@
+@import "../../../../styles/scss/mixins";
+
+.number {
+    @include text-style(50px, bold);
+}
+
+.label {
+    @include text-style(20px, bold);
+}

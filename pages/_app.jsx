@@ -3,7 +3,8 @@ import { Provider } from "react-redux";
 import { useState } from "react";
 import store from "../redux";
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
-import Layout from "@shards/Layout";
+import Navbar from "@/shards/Navbar";
+import Layout from "@/shards/Layout";
 import { getCookie, setCookies } from "cookies-next";
 
 export default function App(props) {

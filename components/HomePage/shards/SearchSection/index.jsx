@@ -13,20 +13,14 @@ export default function SearchSection() {
         <div
             className={clx(styles.container, { [styles.containerDark]: dark })}
         >
-            <Text
-                mb={30}
-                className={clx(styles.caption, { [styles.captionDark]: dark })}
-            >
+            <Text mb={30} weight={500} color="dark" className={styles.caption}>
                 Explore{" "}
                 <Text
                     component="span"
-                    weight="bold"
-                    className={clx(styles.caption, {
-                        [styles.captionDark]: dark,
-                    })}
+                    weight="bolder"
+                    className={styles.caption}
                 >
-                    {" "}
-                    5000+{" "}
+                    5000+
                 </Text>{" "}
                 of new jobs posted monthly!
             </Text>
@@ -36,11 +30,13 @@ export default function SearchSection() {
                         icon={<AiOutlineSearch className={styles.icon} />}
                         variant="filled"
                         radius="md"
+                        type="search"
                         placeholder="Search for job"
                     />
                     <TextInput
                         icon={<MdLocationOn className={styles.icon} />}
                         variant="filled"
+                        type="search"
                         radius="md"
                         defaultValue="Vietnam"
                     />
