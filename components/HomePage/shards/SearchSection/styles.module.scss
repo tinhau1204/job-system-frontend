@@ -1,4 +1,4 @@
-@import "../../../styles/scss/mixins";
+@import "../../../../styles/scss/mixins";
 
 .icon {
     @include size(24px);
@@ -12,20 +12,16 @@
 
 .caption {
     font-size: 22px;
-
-    &.captionDark {
-        color: $black;
-    }
 }
 
 .container {
     @include flex-col-center;
 
     height: 200px;
-    background-color: rgb(255, 242, 64);
+    background-color: #f6d5a4;
 
     &.containerDark {
-        background-color: #fab000;
+        background-color: #d19a66;
     }
 }
 

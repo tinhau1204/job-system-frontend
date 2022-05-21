@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Container, Group, Text } from "@mantine/core";
-import navbarData from "./data";
 import styles from "./styles.module.scss";
 
-export default function NavbarMenu() {
+export default function Menu({ data }) {
     return (
         <Group>
-            {navbarData.map((item, index) => (
+            {data.map((item, index) => (
                 <Container key={index}>
                     <Link href={item.path} passHref>
                         <Text
