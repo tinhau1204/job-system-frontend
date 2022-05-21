@@ -1,13 +1,16 @@
 import Menu from "./components/Menu";
 import ThemeSwitcher from "@/shards/ThemeSwitcher";
+import UserMenu from "./components/UserMenu";
 import Image from "next/image";
+import { MdNotifications } from "react-icons/md";
 import { Group } from "@mantine/core";
 import styles from "./styles.module.scss";
-
-// import { MdNotifications } from "react-icons/md";
-// import UserMenu from "./components/UserMenu";
+import { useSelector } from "react-redux";
+import { getUser } from "@/redux/user";
 
 export default function Navbar() {
+    const user = useSelector(getUser);
+
     return (
         <Group position="apart" className={styles.navbar}>
             <Group>
@@ -28,15 +31,19 @@ export default function Navbar() {
             </Group>
             <Group>
                 <ThemeSwitcher />
-
-                {/* <UserMenu /> */}
-                {/* <MdNotifications size={20} /> */}
-                <Menu
-                    data={[
-                        { title: "Login", path: "/login" },
-                        { title: "Register", path: "/register" },
-                    ]}
-                />
+                {user.id ? (
+                    <>
+                        <UserMenu />
+                        <MdNotifications size={20} />
+                    </>
+                ) : (
+                    <Menu
+                        data={[
+                            { title: "Login", path: "/login" },
+                            { title: "Register", path: "/register" },
+                        ]}
+                    />
+                )}
             </Group>
         </Group>
     );

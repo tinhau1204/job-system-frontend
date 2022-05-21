@@ -10,6 +10,8 @@ import {
     Stack,
     Checkbox,
 } from "@mantine/core";
+import { login } from "@/redux/user";
+import { useDispatch } from "react-redux";
 import { joiResolver, useForm } from "@mantine/form";
 import GoogleButton from "./shards/GoogleButton";
 import { HiLockClosed } from "react-icons/hi";
@@ -17,8 +19,15 @@ import { BsPersonCircle } from "react-icons/bs";
 import loginSchema from "./validate";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
+import { TiTick } from "react-icons/ti";
+import { MdOutlineClose } from "react-icons/md";
+import { assignUser } from "@/lib/api/user";
+import { showNotification } from "@mantine/notifications";
+import { useDisclosure } from "@mantine/hooks";
 
 const LoginPage = () => {
+    const dispatch = useDispatch();
+    const [isLoading, isLoadingHandlers] = useDisclosure(false);
     const router = useRouter();
 
     const form = useForm({
@@ -34,7 +43,33 @@ const LoginPage = () => {
     };
 
     const handleSubmit = async (values) => {
-        console.log(values);
+        isLoadingHandlers.open();
+
+        const [data, error] = await assignUser("/user/login", values);
+
+        if (data) {
+            showNotification({
+                title: "Login success",
+                message: "Welcome to Jobable 🚀",
+                color: "green",
+                icon: <TiTick color="white" />,
+            });
+
+            dispatch(login({ ...data.message }));
+
+            router.push("/");
+        }
+
+        if (error) {
+            showNotification({
+                title: "Login error",
+                message: error.message,
+                icon: <MdOutlineClose color="white" />,
+                color: "red",
+            });
+        }
+
+        isLoadingHandlers.close();
     };
 
     return (
@@ -71,7 +106,7 @@ const LoginPage = () => {
                         Register
                     </Anchor>
                 </Center>
-                <LoadingOverlay visible={false} />
+                <LoadingOverlay visible={isLoading} />
                 <Divider label="OR" labelPosition="center" />
                 <GoogleButton />
             </Stack>

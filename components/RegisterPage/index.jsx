@@ -18,8 +18,14 @@ import PasswordStrength from "./shards/PasswordStrength";
 import { MdPerson, MdPhone } from "react-icons/md";
 import registerSchema from "./validate";
 import styles from "./styles.module.scss";
+import { TiTick } from "react-icons/ti";
+import { MdOutlineClose } from "react-icons/md";
+import { assignUser } from "@/lib/api/user";
+import { showNotification } from "@mantine/notifications";
+import { useDisclosure } from "@mantine/hooks";
 
 const RegisterPage = () => {
+    const [isLoading, isLoadingHandlers] = useDisclosure(false);
     const router = useRouter();
 
     const form = useForm({
@@ -40,7 +46,29 @@ const RegisterPage = () => {
     };
 
     const handleSubmit = async (values) => {
-        console.log(values);
+        isLoadingHandlers.open();
+        const [data, error] = await assignUser("/user/register", values);
+
+        if (data) {
+            showNotification({
+                title: "Register success",
+                message: "Welcome to Jobable 🚀",
+                color: "green",
+                icon: <TiTick color="white" />,
+            });
+            router.push("/login");
+        }
+
+        if (error) {
+            showNotification({
+                title: "Register error",
+                color: "red",
+                message: error.message,
+                icon: <MdOutlineClose color="white" />,
+            });
+        }
+
+        isLoadingHandlers.close();
     };
 
     return (
@@ -89,14 +117,14 @@ const RegisterPage = () => {
                         {...form.getInputProps("confirmPassword")}
                     />
                     <RadioGroup
-                        defaultValue="student"
+                        defaultValue="Student"
                         label="What is your role?"
                         size="md"
                         required
                         {...form.getInputProps("role")}
                     >
-                        <Radio value="student" label="Student" />
-                        <Radio value="employer" label="Employer" />
+                        <Radio value="Student" label="Student" />
+                        <Radio value="Employer" label="Employer" />
                     </RadioGroup>
                     <TextInput
                         label="Phone number"
@@ -117,7 +145,7 @@ const RegisterPage = () => {
                         </Anchor>
                     </Center>
                 </SimpleGrid>
-                <LoadingOverlay visible={false} />
+                <LoadingOverlay visible={isLoading} />
             </Stack>
         </form>
     );

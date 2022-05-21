@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { useState } from "react";
 import store from "../redux";
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
-import Navbar from "@/shards/Navbar";
+import { NotificationsProvider } from "@mantine/notifications";
 import Layout from "@/shards/Layout";
 import { getCookie, setCookies } from "cookies-next";
 
@@ -47,9 +47,11 @@ export default function App(props) {
                         withGlobalStyles
                         withNormalizeCSS
                     >
-                        <Layout>
-                            <Component {...pageProps} />
-                        </Layout>
+                        <NotificationsProvider>
+                            <Layout>
+                                <Component {...pageProps} />
+                            </Layout>
+                        </NotificationsProvider>
                     </MantineProvider>
                 </ColorSchemeProvider>
             </Provider>
