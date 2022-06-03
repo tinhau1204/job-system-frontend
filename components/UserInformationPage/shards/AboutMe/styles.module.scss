@@ -1,0 +1,14 @@
+@import "../../../../styles/scss/mixins";
+
+.container {
+    margin-bottom: 30px;
+}
+
+.editBtn {
+    @include flex-common($justify: center, $items: center);
+    color: rgb(1, 126, 183);
+    font-weight: 500;
+    :hover {
+        color: blue;
+    }
+}

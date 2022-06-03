@@ -1,0 +1,16 @@
+@import "../../../../styles/scss/mixins";
+
+.body {
+    @include flex-common();
+    @media (max-width: 600px) {
+        @include flex-common($direction: column);
+    }
+}
+
+.title {
+    width: 300px;
+}
+
+.container {
+    margin-bottom: 30px;
+}

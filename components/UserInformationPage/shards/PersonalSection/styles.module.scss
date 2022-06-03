@@ -1,0 +1,40 @@
+@import "../../../../styles/scss/mixins";
+
+.container {
+    @include flex-common();
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    @media (max-width: 880px) {
+        @include flex-common($direction: column, $items: center);
+        padding: 0px;
+    }
+}
+.nameContainer {
+    @include flex-common($justify: center);
+}
+.header {
+    @include flex-common($items: center);
+    padding-left: 10px;
+    padding-right: 10px;
+    @media (max-width: 880px) {
+        @include flex-common($items: center, $direction: column);
+    }
+}
+.infoContainer {
+    padding-left: 30px;
+    padding-right: 10px;
+}
+
+.editInfoBtn {
+    @include flex-common($items: center);
+    color: rgb(1, 126, 183);
+    :hover {
+        color: blue;
+    }
+}
+
+.line {
+    width: 273px;
+    height: 60px;
+}

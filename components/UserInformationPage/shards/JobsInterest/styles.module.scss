@@ -1,0 +1,32 @@
+@import "../../../../styles/scss/mixins";
+
+.container {
+    margin-bottom: 30px;
+}
+
+.fieldOfInterest {
+    @include flex-common();
+    margin-bottom: 10px;
+    @media (max-width: 680px) {
+        @include flex-common($direction: column);
+    }
+}
+
+.line {
+    @include flex-common($items: center);
+    @media (max-width: 680px) {
+        @include flex-common($direction: column);
+    }
+}
+.fieldItem {
+    border-left: 6px solid rgb(201, 199, 199);
+    padding-left: 5px;
+}
+.title {
+    width: 300px;
+    padding: 5px;
+}
+
+.item {
+    padding-bottom: 5px;
+}
