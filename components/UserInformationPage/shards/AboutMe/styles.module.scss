@@ -1,0 +1,14 @@
+@import "../../../../styles/scss/mixins";
+
+.container {
+    margin-bottom: 30px;
+}
+
+.btn {
+    margin-top: 10px;
+    @include flex-common($justify: end);
+}
+
+.form {
+    margin-top: 20px;
+}

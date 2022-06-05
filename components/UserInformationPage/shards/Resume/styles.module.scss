@@ -1,0 +1,23 @@
+@import "../../../../styles/scss/mixins";
+
+.container {
+    margin-bottom: 30px;
+}
+
+.formBody {
+    margin-top: 20px;
+}
+
+.content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: dashed 1px #03aeef;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.btnContainer {
+    margin-top: 10px;
+    @include flex-common($justify: end);
+}

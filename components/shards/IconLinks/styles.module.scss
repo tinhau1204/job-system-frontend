@@ -1,0 +1,7 @@
+@import "../../../styles/scss/mixins";
+
+.text {
+    @media (max-width: 750px) {
+        max-width: 300px;
+    }
+}
