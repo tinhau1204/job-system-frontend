@@ -38,3 +38,12 @@
     width: 273px;
     height: 60px;
 }
+.btn {
+    margin-top: 10px;
+
+    @include flex-common($justify: end);
+}
+
+.space {
+    margin-top: 15px;
+}

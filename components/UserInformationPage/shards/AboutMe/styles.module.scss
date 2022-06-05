@@ -4,11 +4,11 @@
     margin-bottom: 30px;
 }
 
-.editBtn {
-    @include flex-common($justify: center, $items: center);
-    color: rgb(1, 126, 183);
-    font-weight: 500;
-    :hover {
-        color: blue;
-    }
+.btn {
+    margin-top: 10px;
+    @include flex-common($justify: end);
+}
+
+.form {
+    margin-top: 20px;
 }
