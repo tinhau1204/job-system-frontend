@@ -1,0 +1,21 @@
+@import "@/styles/scss/mixins";
+
+.container {
+    padding: 10px 30px;
+}
+
+.info {
+    @include flex-common($items: center);
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.headerContainer {
+    @include flex-common();
+}
+
+.imageContainer {
+    margin: 0px 15px;
+}

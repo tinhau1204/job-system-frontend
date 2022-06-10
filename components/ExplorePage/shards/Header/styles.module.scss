@@ -1,0 +1,11 @@
+@import "../../../../styles/scss/mixins";
+
+.header {
+    width: 90%;
+    @include flex-common($items: center, $justify: space-between);
+}
+
+.input {
+    margin: 10px;
+    width: 50%;
+}
