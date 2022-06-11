@@ -22,10 +22,10 @@ import { TiTick } from "react-icons/ti";
 import { MdOutlineClose } from "react-icons/md";
 import { assignUser } from "@/lib/api/user";
 import { showNotification } from "@mantine/notifications";
-import { useDisclosure } from "@mantine/hooks";
+import { useState } from "react";
 
 const RegisterPage = () => {
-    const [isLoading, isLoadingHandlers] = useDisclosure(false);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const form = useForm({
@@ -46,7 +46,7 @@ const RegisterPage = () => {
     };
 
     const handleSubmit = async (values) => {
-        isLoadingHandlers.open();
+        setLoading(false);
         const [data, error] = await assignUser("/user/register", values);
 
         if (data) {
@@ -68,7 +68,7 @@ const RegisterPage = () => {
             });
         }
 
-        isLoadingHandlers.close();
+        setLoading(false);
     };
 
     return (
@@ -145,7 +145,7 @@ const RegisterPage = () => {
                         </Anchor>
                     </Center>
                 </SimpleGrid>
-                <LoadingOverlay visible={isLoading} />
+                <LoadingOverlay visible={loading} />
             </Stack>
         </form>
     );

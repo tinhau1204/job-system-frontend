@@ -1,19 +1,29 @@
 import User from "../User";
 import { Menu } from "@mantine/core";
-import { login } from "@/redux/user";
 import { FaCogs, FaSignOutAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
+import { useRouter } from "next/router";
+import { logout } from "@/redux/user";
+
 export default function UserMenu() {
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const handleLogout = () => {
-        dispatch(login({ id: undefined, role: undefined }));
+        dispatch(logout());
+        router.push("/");
+    };
+
+    const handleOnClick = () => {
+        router.push("/userInformation");
     };
 
     return (
         <Menu control={<User />} placement="end">
-            <Menu.Item icon={<FaCogs />}>Settings</Menu.Item>
+            <Menu.Item icon={<FaCogs />} onClick={handleOnClick}>
+                Profile
+            </Menu.Item>
             <Menu.Item
                 color="red"
                 onClick={handleLogout}

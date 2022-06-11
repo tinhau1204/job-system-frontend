@@ -1,7 +1,7 @@
 import { ActionIcon, useMantineColorScheme } from "@mantine/core";
 import { CgMoon, CgSun } from "react-icons/cg";
 
-export default function ThemeSwitch() {
+export default function ThemeSwitcher() {
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const dark = colorScheme === "dark";
 

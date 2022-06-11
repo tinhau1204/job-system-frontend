@@ -18,6 +18,7 @@
 }
 
 .btnContainer {
+    @include flex-common($justify: flex-end, $items: flex-end);
+
     margin-top: 10px;
-    @include flex-common($justify: end);
 }

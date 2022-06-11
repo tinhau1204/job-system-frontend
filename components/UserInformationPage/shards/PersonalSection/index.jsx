@@ -17,8 +17,11 @@ import * as ri from "react-icons/ri";
 import { useState } from "react";
 import * as bi from "react-icons/bi";
 import * as ti from "react-icons/ti";
+import { useSelector } from "react-redux";
+import { getUser } from "@/redux/user";
 
 export default function PersonalSection({ isLoading = true }) {
+    const user = useSelector(getUser);
     const [opened, setOpened] = useState(false);
 
     return (
@@ -31,15 +34,24 @@ export default function PersonalSection({ isLoading = true }) {
                 <Divider />
                 <form>
                     <Group position="apart" className={styles.space}>
-                        <TextInput label="First Name" />
-                        <TextInput label="Last Name" />
+                        <TextInput
+                            label="First Name"
+                            defaultValue={user.firstName}
+                        />
+                        <TextInput
+                            label="Last Name"
+                            defaultValue={user.lastName}
+                        />
                     </Group>
-                    <TextInput label="Phone Number" />
-                    <Text>Example: +84912345678</Text>
+                    <TextInput
+                        label="Phone Number"
+                        defaultValue={user.phoneNumber}
+                    />
+                    <Text>Example: +0912345678</Text>
                     <Text color="gray" weight={500} className={styles.space}>
                         Email
                     </Text>
-                    <Text weight={700}> cpea2506@gmail.com</Text>
+                    <Text weight={700}>{user.email}</Text>
                     <Text>
                         <ti.TiTickOutline color="green" />
                         Your email address is verified.
@@ -88,6 +100,7 @@ export default function PersonalSection({ isLoading = true }) {
                     height="135px"
                 >
                     <Image
+                        alt="user avatar"
                         radius={60}
                         width="120px"
                         height="120px"
@@ -95,13 +108,11 @@ export default function PersonalSection({ isLoading = true }) {
                     />
                 </Skeleton>
                 <Stack>
-                    <div className={styles.header}>
-                        <Skeleton
-                            visible={isLoading}
-                            width="150px"
-                            className={styles.nameContainer}
-                        >
-                            <Title order={3}>Đỗ Viên</Title>
+                    <Group>
+                        <Skeleton width="auto" pl={30} visible={isLoading}>
+                            <Title
+                                order={3}
+                            >{`${user.firstName} ${user.lastName}`}</Title>
                         </Skeleton>
                         <Button
                             leftIcon={<ri.RiPencilFill size={14} />}
@@ -111,21 +122,22 @@ export default function PersonalSection({ isLoading = true }) {
                             onClick={() => setOpened(true)}
                             sx={() => ({
                                 backgroundColor: "transparent",
+
                                 "&:hover": {
                                     backgroundColor: "transparent",
                                 },
                             })}
                         >
-                            Edit basic Infor
+                            Edit basic Information
                         </Button>
-                    </div>
-                    <Group className={styles.infoContainer}>
+                    </Group>
+                    <Group pl={30} pr={10}>
                         <Stack>
                             <div className={styles.line}>
                                 <Title order={6}>PHONE</Title>
                                 <Skeleton visible={isLoading}>
                                     <Text size="25px" weight={400}>
-                                        01234567891
+                                        {user.phoneNumber}
                                     </Text>
                                 </Skeleton>
                             </div>
@@ -133,7 +145,7 @@ export default function PersonalSection({ isLoading = true }) {
                             <div className={styles.line}>
                                 <Title order={6}>LOCATION</Title>
                                 <Skeleton visible={isLoading}>
-                                    <Text>Da lat</Text>
+                                    <Text>Unknown</Text>
                                 </Skeleton>
                             </div>
 
@@ -148,21 +160,21 @@ export default function PersonalSection({ isLoading = true }) {
                             <div className={styles.line}>
                                 <Title order={6}>EMAIL</Title>
                                 <Skeleton visible={isLoading}>
-                                    <Text>cpea2506@gmail.com</Text>
+                                    <Text>{user.email}</Text>
                                 </Skeleton>
                             </div>
 
                             <div className={styles.line}>
                                 <Title order={6}>AGE, GENDER</Title>
                                 <Skeleton visible={isLoading}>
-                                    <Text>21 years old, Female</Text>
+                                    <Text>Unknown</Text>
                                 </Skeleton>
                             </div>
 
                             <div className={styles.line}>
                                 <Title order={6}>NATIONALITY</Title>
                                 <Skeleton visible={isLoading}>
-                                    <Text>Vietnamese, Vietnam</Text>
+                                    <Text>Vietnam</Text>
                                 </Skeleton>
                             </div>
                         </Stack>
