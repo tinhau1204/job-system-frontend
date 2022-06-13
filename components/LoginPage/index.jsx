@@ -23,11 +23,11 @@ import { TiTick } from "react-icons/ti";
 import { MdOutlineClose } from "react-icons/md";
 import { assignUser } from "@/lib/api/user";
 import { showNotification } from "@mantine/notifications";
-import { useDisclosure } from "@mantine/hooks";
+import { useState } from "react";
 
 const LoginPage = () => {
     const dispatch = useDispatch();
-    const [isLoading, isLoadingHandlers] = useDisclosure(false);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const form = useForm({
@@ -43,8 +43,7 @@ const LoginPage = () => {
     };
 
     const handleSubmit = async (values) => {
-        isLoadingHandlers.open();
-
+        setLoading(true);
         const [data, error] = await assignUser("/user/login", values);
 
         if (data) {
@@ -69,7 +68,7 @@ const LoginPage = () => {
             });
         }
 
-        isLoadingHandlers.close();
+        setLoading(false);
     };
 
     return (
@@ -106,7 +105,7 @@ const LoginPage = () => {
                         Register
                     </Anchor>
                 </Center>
-                <LoadingOverlay visible={isLoading} />
+                <LoadingOverlay visible={loading} />
                 <Divider label="OR" labelPosition="center" />
                 <GoogleButton />
             </Stack>

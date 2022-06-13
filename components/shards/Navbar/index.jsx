@@ -17,8 +17,8 @@ export default function Navbar() {
                 <Image
                     className={styles.image}
                     alt="Jobable Logo"
-                    width={80}
-                    height={40}
+                    width={60}
+                    height={30}
                     src="https://talkbitz.com/wp-content/uploads/2020/04/Best-Free-Online-Logo-Maker-Sites.png"
                 />
                 <Menu

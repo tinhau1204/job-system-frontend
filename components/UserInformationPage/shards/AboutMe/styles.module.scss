@@ -6,7 +6,8 @@
 
 .btn {
     margin-top: 10px;
-    @include flex-common($justify: end);
+
+    @include flex-common($justify: flex-end, $items: flex-end);
 }
 
 .form {
