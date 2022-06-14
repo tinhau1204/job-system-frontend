@@ -1,0 +1,11 @@
+@import "@/styles/scss/mixins";
+
+.container {
+    padding: 15px 32px;
+}
+
+.boxContent {
+    border-left: 1px solid grayscale($color: #cccccc);
+    border-right: 1px solid grayscale($color: #cccccc);
+    border-top: 1px solid grayscale($color: #cccccc);
+}
