@@ -1,11 +1,20 @@
-import { Box, Group, Image, Stack, Text } from "@mantine/core";
+import { Box, Group, Image, Stack, Text, Skeleton } from "@mantine/core";
 import * as md from "react-icons/md";
 import * as bs from "react-icons/bs";
 import styles from "./styles.module.scss";
 import * as clx from "classnames";
 import Link from "next/link";
 
-export default function BussinessBox() {
+export default function BussinessBox({
+    id,
+    name,
+    salary,
+    place,
+    experienceNeeded,
+    imageURL,
+    createdAt,
+    companyName,
+}) {
     return (
         <Link
             href="https://images.glints.com/unsafe/60x0/glints-dashboard.s3.amazonaws.com/company-logo/2b4685b27d1a643dd0c06d1853bcb11f.jpg"
@@ -23,11 +32,7 @@ export default function BussinessBox() {
                 })}
             >
                 <Group noWrap className={styles.header}>
-                    <Image
-                        src="https://images.glints.com/unsafe/60x0/glints-dashboard.s3.amazonaws.com/company-logo/2b4685b27d1a643dd0c06d1853bcb11f.jpg"
-                        width="50px"
-                        height="50px"
-                    />
+                    <Image src={imageURL} width="50px" height="50px" />
                     <Stack
                         spacing="xs"
                         justify="flex-start"
@@ -39,7 +44,7 @@ export default function BussinessBox() {
                             width="212px"
                             lineClamp={2}
                         >
-                            business intern
+                            {name}
                         </Text>
                         <Text
                             variant="link"
@@ -48,7 +53,7 @@ export default function BussinessBox() {
                             lineClamp={1}
                             href="https://images.glints.com/unsafe/60x0/glints-dashboard.s3.amazonaws.com/company-logo/2b4685b27d1a643dd0c06d1853bcb11f.jpg"
                         >
-                            công ty tnhh bảo hiểm nhân thọ chubb việt nam
+                            {companyName}
                         </Text>
                     </Stack>
                 </Group>
@@ -56,22 +61,22 @@ export default function BussinessBox() {
                     <Stack spacing="xs" className={styles.infoContainer}>
                         <div className={styles.info}>
                             <md.MdPlace className={styles.icon} />
-                            <Text> Quận 1, HO CHI Minh City</Text>
+                            <Text> {place}</Text>
                         </div>
                         <div className={styles.info}>
                             <bs.BsCurrencyDollar className={styles.icon} />
-                            <Text>VND 2,000,000 - 4,000,000</Text>
+                            <Text>$ {salary}</Text>
                         </div>
                         <div className={styles.info}>
                             <md.MdOutlineWork className={styles.icon} />
-                            <Text>Less than a year</Text>
+                            <Text>{experienceNeeded}</Text>
                         </div>
                     </Stack>
                 </Stack>
                 <div className={clx(styles.info, styles.footer)}>
                     <md.MdAccessTime className={styles.icon} />
                     <Text size="xs" color="gray">
-                        Created 9 years ago
+                        {createdAt}
                     </Text>
                 </div>
             </Box>
