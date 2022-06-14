@@ -1,11 +1,11 @@
-import CompaniesDetailPage from "components/CompaniesDetailPage";
+import CompanyDetailPage from "components/CompanyDetailPage";
 
-const companiesDetailPage = () => {
+const companyDetailPage = () => {
     return (
         <>
-            <CompaniesDetailPage />
+            <CompanyDetailPage />
         </>
     );
 };
 
-export default companiesDetailPage;
+export default companyDetailPage;
