@@ -45,6 +45,7 @@ const LoginPage = () => {
     const handleSubmit = async (values) => {
         setLoading(true);
         const [data, error] = await assignUser("/user/login", values);
+        console.log(data, error);
 
         if (data) {
             showNotification({

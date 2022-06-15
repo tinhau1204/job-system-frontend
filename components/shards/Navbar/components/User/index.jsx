@@ -8,7 +8,7 @@ const User = ({ ...buttonProps }, ref) => {
     user = {
         displayName: `${user.firstName} ${user.lastName}`,
         photoURL:
-            "https://ichef.bbci.co.uk/news/976/cpsprodpb/16620/production/_91408619_55df76d5-2245-41chttps://images.glints.com/unsafe/140x140/glints-dashboard.s3.amazonaws.com/profile-picture-default/13.jpg",
+            "https://images.glints.com/unsafe/140x140/glints-dashboard.s3.amazonaws.com/profile-picture-default/13.jpg",
     };
 
     return (

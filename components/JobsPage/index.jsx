@@ -6,11 +6,14 @@ import { useSelector } from "react-redux";
 import { getUser } from "@/redux/user";
 import { getAllJob } from "@/lib/api/job";
 import useSWR from "swr";
-import { Skeleton } from "@mantine/core";
 
 export default function JobsPage() {
-    let user = useSelector(getUser);
-    const { data } = useSWR("Student" ? "/job" : `/job/${user.id}`, getAllJob);
+    let { id, role } = useSelector(getUser);
+
+    const { data } = useSWR(
+        role == "Employer" ? `/job/employer/${id}` : "/job",
+        getAllJob,
+    );
 
     return (
         <>
@@ -23,16 +26,17 @@ export default function JobsPage() {
                     {!data ? (
                         <div className={styles.business}>
                             {[...Array(10)].map((_, index) => (
-                                <Skeleton key={index} visible>
-                                    {" "}
-                                    <BussinessBox />
-                                </Skeleton>
+                                <BussinessBox key={index} loading />
                             ))}
                         </div>
                     ) : (
                         <div className={styles.business}>
                             {data.map((job, index) => (
-                                <BussinessBox key={index} {...job} />
+                                <BussinessBox
+                                    key={index}
+                                    {...job}
+                                    loading={false}
+                                />
                             ))}
                         </div>
                     )}

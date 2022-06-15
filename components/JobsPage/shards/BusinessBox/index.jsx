@@ -8,18 +8,37 @@ import Link from "next/link";
 export default function BussinessBox({
     id,
     name,
+    field,
     salary,
     place,
     experienceNeeded,
-    imageURL,
+    imageUrl,
+    employmentStatus,
     createdAt,
-    companyName,
+    loading,
+    description,
 }) {
     return (
         <Link
-            href="https://images.glints.com/unsafe/60x0/glints-dashboard.s3.amazonaws.com/company-logo/2b4685b27d1a643dd0c06d1853bcb11f.jpg"
+            href={{
+                pathname: "/jobDetail",
+                query: {
+                    id,
+                    name,
+                    salary,
+                    place,
+                    field,
+                    experienceNeeded,
+                    imageUrl,
+                    employmentStatus,
+                    createdAt,
+                    loading,
+                    description,
+                },
+            }}
             target="_blank"
             className={styles.container}
+            passHref
         >
             <Box
                 className={styles.boxContainer}
@@ -28,57 +47,63 @@ export default function BussinessBox({
                     textDecoration: "none",
                     borderRadius: theme.radius.md,
                     cursor: "pointer",
-                    width: "360px",
                 })}
             >
-                <Group noWrap className={styles.header}>
-                    <Image src={imageURL} width="50px" height="50px" />
-                    <Stack
-                        spacing="xs"
-                        justify="flex-start"
-                        className={styles.contentHeader}
-                    >
+                <Group className={styles.header}>
+                    <Skeleton width="auto" visible={loading}>
+                        <Image
+                            alt="image"
+                            src={imageUrl ?? ""}
+                            width="50px"
+                            height="50px"
+                        />
+                    </Skeleton>
+                    <Skeleton width="auto" visible={loading}>
                         <Text
                             transform="uppercase"
-                            weight={600}
-                            width="212px"
-                            lineClamp={2}
+                            weight="bold"
+                            align="left"
+                            style={{
+                                whiteSpace: "nowrap",
+                                width: "300px",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                            }}
                         >
-                            {name}
+                            {name ?? "loremSent"}
                         </Text>
-                        <Text
-                            variant="link"
-                            transform="uppercase"
-                            component="a"
-                            lineClamp={1}
-                            href="https://images.glints.com/unsafe/60x0/glints-dashboard.s3.amazonaws.com/company-logo/2b4685b27d1a643dd0c06d1853bcb11f.jpg"
-                        >
-                            {companyName}
-                        </Text>
-                    </Stack>
+                    </Skeleton>
                 </Group>
                 <Stack className={styles.body}>
                     <Stack spacing="xs" className={styles.infoContainer}>
-                        <div className={styles.info}>
-                            <md.MdPlace className={styles.icon} />
-                            <Text> {place}</Text>
-                        </div>
-                        <div className={styles.info}>
-                            <bs.BsCurrencyDollar className={styles.icon} />
-                            <Text>$ {salary}</Text>
-                        </div>
-                        <div className={styles.info}>
-                            <md.MdOutlineWork className={styles.icon} />
-                            <Text>{experienceNeeded}</Text>
-                        </div>
+                        <Skeleton visible={loading}>
+                            <div className={styles.info}>
+                                <md.MdPlace className={styles.icon} />
+                                <Text> {place}</Text>
+                            </div>
+                        </Skeleton>
+                        <Skeleton visible={loading}>
+                            <div className={styles.info}>
+                                <bs.BsCurrencyDollar className={styles.icon} />
+                                <Text>{salary}</Text>
+                            </div>
+                        </Skeleton>
+                        <Skeleton visible={loading}>
+                            <div className={styles.info}>
+                                <md.MdOutlineWork className={styles.icon} />
+                                <Text>{experienceNeeded}</Text>
+                            </div>
+                        </Skeleton>
                     </Stack>
                 </Stack>
-                <div className={clx(styles.info, styles.footer)}>
-                    <md.MdAccessTime className={styles.icon} />
-                    <Text size="xs" color="gray">
-                        {createdAt}
-                    </Text>
-                </div>
+                <Skeleton visible={loading}>
+                    <div className={clx(styles.info, styles.footer)}>
+                        <md.MdAccessTime className={styles.icon} />
+                        <Text size="xs" color="gray">
+                            Created at {createdAt}
+                        </Text>
+                    </div>
+                </Skeleton>
             </Box>
         </Link>
     );

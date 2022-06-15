@@ -2,7 +2,7 @@ import { Badge, Group, List, Stack, Text, Title } from "@mantine/core";
 import styles from "./styles.module.scss";
 import * as md from "react-icons/md";
 
-export default function Content() {
+export default function Content({ description }) {
     return (
         <>
             <div className={styles.container}>
@@ -67,22 +67,8 @@ export default function Content() {
                         </div>
                     </Stack>
                     <Stack>
-                        <Title order={3} className={styles.skillMusthave}>
-                            Must have skills
-                        </Title>
-                        <Group className={styles.skillsContainer}>
-                            <Badge>Computer And Networking</Badge>
-                            <Badge>Sales</Badge>
-                            <Badge>Good Teamwork</Badge>
-                            <Badge>Good Communication Skills</Badge>
-                        </Group>
-                    </Stack>
-                    <Stack>
-                        <Title order={3}>
-                            Job description for BUSINESS INTERN at CÔNG TY TNHH
-                            BẢO HIỂM NHÂN THỌ CHUBB VIỆT NAM
-                        </Title>
-                        <Text weight={500}>Job Description</Text>
+                        <Title order={3}>Job description</Title>
+                        {description}
                         <List>
                             <List.Item>
                                 Research and generate lists of potential

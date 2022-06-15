@@ -1,16 +1,11 @@
 @import "@/styles/scss/mixins";
 
-.container {
-    margin: 10px;
-}
-
 .boxContainer {
-    width: 360px;
+    width: 400px;
     margin: 10px;
     padding: 10px;
     border: 1px solid gray;
     height: 230px;
-    box-shadow: rgb(245 166 35 / 22%) 2px 6px 15px;
 
     &:hover {
         box-shadow: rgba(78, 78, 78, 0.22) 2px 2px 2px 3px;
@@ -18,7 +13,9 @@
 }
 
 .info {
-    @include flex-common($justify: start, $items: center);
+    @include flex-common($justify: flex-start, $items: center);
+
+    font-size: 14px;
 }
 
 .contentHeader {
