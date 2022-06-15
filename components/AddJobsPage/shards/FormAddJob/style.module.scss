@@ -1,3 +1,7 @@
-.formContainer {
-    width: 1140;
+@import "../../../../styles/scss/mixins";
+
+.container {
+    @include flex-col-center;
+
+    height: 100%;
 }

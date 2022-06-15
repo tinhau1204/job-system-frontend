@@ -1,4 +1,4 @@
-import EmployersPage from "components/EmployersPage";
+import EmployersPage from "@/components/EmployersPage";
 
 const employersPage = () => {
     return (

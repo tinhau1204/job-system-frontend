@@ -14,7 +14,7 @@
 }
 
 .sortContainer {
-    @include flex-common($justify: start);
+    @include flex-common($justify: flex-start);
 }
 
 .badge {

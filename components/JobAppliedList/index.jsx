@@ -1,42 +1,29 @@
 import styles from "./style.module.scss";
-import { Text, Paper, Group, Grid, Stack, Space } from "@mantine/core";
-import { AiOutlineRollback } from "react-icons/ai";
-import ApplicantList from "./shards/ApplicantList";
+import { Text, Paper, Stack } from "@mantine/core";
 import ApplicantComparison from "./shards/ApplicantComparison";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+import { getAllStudentByJob } from "@/lib/api/job";
 
 export default function JobAppliedList() {
+    const router = useRouter();
+    const { id } = router.query;
+    const { data } = useSWR(`/job/${id}`, getAllStudentByJob);
+
+    if (data) {
+        console.log(data);
+    }
+
     return (
         <div className={styles.container}>
-            <Group spacing="xs">
-                <AiOutlineRollback className={styles.iconsBack} />
-                <Text variant="link" component="a" href="" size="lg">
-                    {" "}
-                    Back{" "}
-                </Text>
-            </Group>
+            <Paper mt={20}>
+                <Stack>
+                    <Text weight="bold" size="xl">
+                        Applicant List
+                    </Text>
 
-            <Paper>
-                <Grid>
-                    <Grid.Col md={12} lg={3}>
-                        <Stack>
-                            <Text weight="bold" size="xl">
-                                Applicant List
-                            </Text>
-                            {[...Array(4)].map((_, index) => (
-                                <ApplicantList key={index} />
-                            ))}
-                        </Stack>
-                    </Grid.Col>
-                    <Grid.Col md={12} lg={9}>
-                        <Stack>
-                            <Text weight="bold" size="xl">
-                                Applicant Comparison
-                            </Text>
-
-                            <ApplicantComparison />
-                        </Stack>
-                    </Grid.Col>
-                </Grid>
+                    {data && <ApplicantComparison data={data} />}
+                </Stack>
             </Paper>
         </div>
     );

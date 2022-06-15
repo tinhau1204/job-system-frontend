@@ -25,7 +25,6 @@ export default function Navbar() {
                     data={[
                         { title: "Home", path: "/" },
                         { title: "Jobs", path: "/jobs" },
-                        { title: "Companies", path: "/companies" },
                     ]}
                 />
             </Group>

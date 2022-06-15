@@ -16,8 +16,8 @@
         "incremental": true,
         "baseUrl": ".",
         "paths": {
-            "@/*": ["./*"],
-            "@/shards/*": ["./components/shards/*"]
+            "@/*": ["*"],
+            "@/shards/*": ["components/shards/*"]
         }
     },
     "include": ["**/*.js", "**/*.jsx"],
