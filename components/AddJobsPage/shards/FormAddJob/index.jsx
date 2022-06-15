@@ -12,6 +12,25 @@ import {
 import { HiOfficeBuilding } from "react-icons/hi";
 import { MdAttachMoney, MdPlace, MdTask, MdDescription } from "react-icons/md";
 import { FaBusinessTime } from "react-icons/fa";
+
+const AddJobPage = () => {
+    const form = useForm({
+        initialValues: {
+            companyName: "",
+            salary: "",
+            placement: "",
+            field: "",
+            employmentStatus: "FullTime",
+            experienceNeeded: "",
+            description: "",
+        },
+    });
+
+    // const handleSubmit = async (value) => {
+    //     const [data,error] = await
+    // }
+};
+
 export default function FormAddJob() {
     return (
         <div className={styles.formContainer}>
