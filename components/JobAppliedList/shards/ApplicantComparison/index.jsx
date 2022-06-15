@@ -71,7 +71,7 @@ export default function ApplicantComparison({ data }) {
                         placeholder="Status"
                         data={[
                             { value: "Accept", label: "Accept" },
-                            { value: "Refused", label: "Refused" },
+                            { value: "Refuse", label: "Refuse" },
                             { value: "Waiting", label: "Waiting" },
                             { value: "Pending", label: "Pending" },
                         ]}
